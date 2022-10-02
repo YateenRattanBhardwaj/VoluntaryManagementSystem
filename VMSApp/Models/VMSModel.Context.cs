@@ -144,7 +144,7 @@ namespace VMSApp.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
-        public virtual ObjectResult<Nullable<System.Guid>> spValidateUser(string emailId, string password)
+        public virtual ObjectResult<spValidateUserResult> spValidateUser(string emailId, string password)
         {
             var emailIdParameter = emailId != null ?
                 new ObjectParameter("EmailId", emailId) :
@@ -154,7 +154,7 @@ namespace VMSApp.Models
                 new ObjectParameter("Password", password) :
                 new ObjectParameter("Password", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("spValidateUser", emailIdParameter, passwordParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spValidateUserResult>("spValidateUser", emailIdParameter, passwordParameter);
         }
     }
 }

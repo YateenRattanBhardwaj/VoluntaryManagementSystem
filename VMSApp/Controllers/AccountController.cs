@@ -10,6 +10,7 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using VMSApp.Filters;
 using VMSApp.Models;
+using System.Configuration;
 
 namespace VMSApp.Controllers
 {
@@ -36,16 +37,39 @@ namespace VMSApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (DbVMSEntities entities = new DbVMSEntities()) { 
+                using (DbVMSEntities entities = new DbVMSEntities())
+                {
                     //entities.sp
-                    Guid? token = entities.spValidateUser(model.EmailId, model.Password).FirstOrDefault();
-                    if (token.HasValue) {
-                        FormsAuthentication.SetAuthCookie(model.EmailId, true);
+                    spValidateUserResult result = entities.spValidateUser(model.EmailId, model.Password).FirstOrDefault();
+                    if (result != null)
+                    {
+                        User user = entities.Users.FirstOrDefault(u => u.Id == result.UserId);
+                        HttpCookie c = new HttpCookie("AuthToken");
+                        c.Value = result.TokenResult.Value.ToString();
+                        c.Expires = DateTime.Now.AddHours(24);
+                        Response.Cookies.Add(c);
+                        if (user.usertype1.Id == int.Parse(ConfigurationManager.AppSettings["Organization"]))
+                        {
+                            returnUrl = "/Organization/Index";
+
+                            FormsAuthentication.SetAuthCookie(user.VolunteerOrganizations.FirstOrDefault().Name, true);
+                        }
+                        else if (user.usertype1.Id == int.Parse(ConfigurationManager.AppSettings["Worker"])) {
+                            returnUrl = "/Worker/Index";
+                            FormsAuthentication.SetAuthCookie(user.Workers.FirstOrDefault().FirstName, true);
+                        }
+                        else if (user.usertype1.Id == int.Parse(ConfigurationManager.AppSettings["Admin"]))
+                        {
+                            returnUrl = "/Admin/Index";
+                            FormsAuthentication.SetAuthCookie(user.Admins.FirstOrDefault().FirstName, true);
+                        }
+                       
+                       
                         return RedirectToLocal(returnUrl);
-                    
+
                     }
                 }
-                
+
             }
 
             // If we got this far, something failed, redisplay form
@@ -60,12 +84,21 @@ namespace VMSApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            Guid AuthToken = Guid.Parse(Request.Cookies["AuthToken"].Value);
+            using (DbVMSEntities entities = new DbVMSEntities()) {
+                UserLogin loggedInUser = entities.UserLogins.FirstOrDefault(ul => ul.AuthToken == AuthToken);
+              if (loggedInUser != null) {
+                  loggedInUser.IsLoggedOut = true;
+                  loggedInUser.LogOutTimeStamp = DateTime.Now;
+                  entities.SaveChanges();
+              }
+            }
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
         }
 
-        
+
 
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)

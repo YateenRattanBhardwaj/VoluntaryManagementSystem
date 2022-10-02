@@ -95,7 +95,7 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
-    <FunctionImport Name="spValidateUser" ReturnType="Collection(Guid)">
+    <FunctionImport Name="spValidateUser" ReturnType="Collection(DbVMSModel.spValidateUserResult)">
       <Parameter Name="EmailId" Mode="In" Type="String" />
       <Parameter Name="Password" Mode="In" Type="String" />
     </FunctionImport>
@@ -428,5 +428,9 @@
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="spValidateUserResult">
+    <Property Type="Guid" Name="TokenResult" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
   </ComplexType>
 </Schema>
