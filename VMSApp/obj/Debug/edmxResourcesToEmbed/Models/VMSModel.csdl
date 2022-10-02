@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbVMSModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="DbVMSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="DbVMSModel.Admin" />
+    <EntitySet Name="ShiftWorkers" EntityType="DbVMSModel.ShiftWorker" />
+    <EntitySet Name="Status" EntityType="DbVMSModel.Status" />
+    <EntitySet Name="sysdiagrams" EntityType="DbVMSModel.sysdiagram" />
+    <EntitySet Name="usertypes" EntityType="DbVMSModel.usertype" />
+    <EntitySet Name="VolunteerActivities" EntityType="DbVMSModel.VolunteerActivity" />
+    <EntitySet Name="VolunteerActivityJobs" EntityType="DbVMSModel.VolunteerActivityJob" />
+    <EntitySet Name="VolunteerOrganizations" EntityType="DbVMSModel.VolunteerOrganization" />
+    <EntitySet Name="VolunteerShifts" EntityType="DbVMSModel.VolunteerShift" />
+    <EntitySet Name="Workers" EntityType="DbVMSModel.Worker" />
+    <AssociationSet Name="FK__tblShiftW__Shift__2E1BDC42" Association="DbVMSModel.FK__tblShiftW__Shift__2E1BDC42">
+      <End Role="VolunteerShift" EntitySet="VolunteerShifts" />
+      <End Role="ShiftWorkers" EntitySet="ShiftWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblShiftW__Worke__2F10007B" Association="DbVMSModel.FK__tblShiftW__Worke__2F10007B">
+      <End Role="Workers" EntitySet="Workers" />
+      <End Role="ShiftWorkers" EntitySet="ShiftWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblVolunt__Statu__182C9B23" Association="DbVMSModel.FK__tblVolunt__Statu__182C9B23">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="VolunteerOrganization" EntitySet="VolunteerOrganizations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblVolunt__Statu__276EDEB3" Association="DbVMSModel.FK__tblVolunt__Statu__276EDEB3">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Workers" EntitySet="Workers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblVolunt__Activ__1FCDBCEB" Association="DbVMSModel.FK__tblVolunt__Activ__1FCDBCEB">
+      <End Role="VolunteerActivity" EntitySet="VolunteerActivities" />
+      <End Role="VolunteerActivityJob" EntitySet="VolunteerActivityJobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblVolunt__OrgId__1BFD2C07" Association="DbVMSModel.FK__tblVolunt__OrgId__1BFD2C07">
+      <End Role="VolunteerOrganization" EntitySet="VolunteerOrganizations" />
+      <End Role="VolunteerActivity" EntitySet="VolunteerActivities" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblVolunt__JobId__239E4DCF" Association="DbVMSModel.FK__tblVolunt__JobId__239E4DCF">
+      <End Role="VolunteerActivityJob" EntitySet="VolunteerActivityJobs" />
+      <End Role="VolunteerShift" EntitySet="VolunteerShifts" />
+    </AssociationSet>
+    <EntitySet Name="Users" EntityType="DbVMSModel.User" />
+    <AssociationSet Name="FK__Admins__UserId__4E88ABD4" Association="DbVMSModel.FK__Admins__UserId__4E88ABD4">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Admin" EntitySet="Admins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ShiftWork__UserI__4F7CD00D" Association="DbVMSModel.FK__ShiftWork__UserI__4F7CD00D">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ShiftWorker" EntitySet="ShiftWorkers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__UserType__4D94879B" Association="DbVMSModel.FK__Users__UserType__4D94879B">
+      <End Role="usertype" EntitySet="usertypes" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Volunteer__UserI__5070F446" Association="DbVMSModel.FK__Volunteer__UserI__5070F446">
+      <End Role="User" EntitySet="Users" />
+      <End Role="VolunteerOrganization" EntitySet="VolunteerOrganizations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Workers__UserId__5165187F" Association="DbVMSModel.FK__Workers__UserId__5165187F">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Worker" EntitySet="Workers" />
+    </AssociationSet>
+    <EntitySet Name="UserLogins" EntityType="DbVMSModel.UserLogin" />
+    <AssociationSet Name="FK__UserLogin__UserI__6D0D32F4" Association="DbVMSModel.FK__UserLogin__UserI__6D0D32F4">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserLogin" EntitySet="UserLogins" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DbVMSModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DbVMSModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="spValidateUser" ReturnType="Collection(Guid)">
+      <Parameter Name="EmailId" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="EmailId" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="DbVMSModel.FK__Admins__UserId__4E88ABD4" FromRole="Admin" ToRole="User" />
+  </EntityType>
+  <EntityType Name="ShiftWorker">
+    <Key>
+      <PropertyRef Name="ShiftWorkerId" />
+    </Key>
+    <Property Name="ShiftWorkerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShiftId" Type="Int32" />
+    <Property Name="WorkerId" Type="Int32" />
+    <Property Name="IsOrgApproved" Type="Boolean" />
+    <Property Name="IsWorkerApproved" Type="Boolean" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="VolunteerShift" Relationship="DbVMSModel.FK__tblShiftW__Shift__2E1BDC42" FromRole="ShiftWorkers" ToRole="VolunteerShift" />
+    <NavigationProperty Name="Worker" Relationship="DbVMSModel.FK__tblShiftW__Worke__2F10007B" FromRole="ShiftWorkers" ToRole="Workers" />
+    <NavigationProperty Name="User" Relationship="DbVMSModel.FK__ShiftWork__UserI__4F7CD00D" FromRole="ShiftWorker" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="VolunteerOrganizations" Relationship="DbVMSModel.FK__tblVolunt__Statu__182C9B23" FromRole="Status" ToRole="VolunteerOrganization" />
+    <NavigationProperty Name="Workers" Relationship="DbVMSModel.FK__tblVolunt__Statu__276EDEB3" FromRole="Status" ToRole="Workers" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="usertype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Users" Relationship="DbVMSModel.FK__Users__UserType__4D94879B" FromRole="usertype" ToRole="User" />
+  </EntityType>
+  <EntityType Name="VolunteerActivity">
+    <Key>
+      <PropertyRef Name="ActivityId" />
+    </Key>
+    <Property Name="ActivityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="OrgId" Type="Int32" />
+    <NavigationProperty Name="VolunteerActivityJobs" Relationship="DbVMSModel.FK__tblVolunt__Activ__1FCDBCEB" FromRole="VolunteerActivity" ToRole="VolunteerActivityJob" />
+    <NavigationProperty Name="VolunteerOrganization" Relationship="DbVMSModel.FK__tblVolunt__OrgId__1BFD2C07" FromRole="VolunteerActivity" ToRole="VolunteerOrganization" />
+  </EntityType>
+  <EntityType Name="VolunteerActivityJob">
+    <Key>
+      <PropertyRef Name="JobId" />
+    </Key>
+    <Property Name="JobId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="ActivityId" Type="Int32" />
+    <Property Name="Country" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="State" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="City" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="VolunteerActivity" Relationship="DbVMSModel.FK__tblVolunt__Activ__1FCDBCEB" FromRole="VolunteerActivityJob" ToRole="VolunteerActivity" />
+    <NavigationProperty Name="VolunteerShifts" Relationship="DbVMSModel.FK__tblVolunt__JobId__239E4DCF" FromRole="VolunteerActivityJob" ToRole="VolunteerShift" />
+  </EntityType>
+  <EntityType Name="VolunteerOrganization">
+    <Key>
+      <PropertyRef Name="OrgId" />
+    </Key>
+    <Property Name="OrgId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="Website" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="Status1" Relationship="DbVMSModel.FK__tblVolunt__Statu__182C9B23" FromRole="VolunteerOrganization" ToRole="Status" />
+    <NavigationProperty Name="VolunteerActivities" Relationship="DbVMSModel.FK__tblVolunt__OrgId__1BFD2C07" FromRole="VolunteerOrganization" ToRole="VolunteerActivity" />
+    <Property Type="String" Name="Address" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="User" Relationship="DbVMSModel.FK__Volunteer__UserI__5070F446" FromRole="VolunteerOrganization" ToRole="User" />
+  </EntityType>
+  <EntityType Name="VolunteerShift">
+    <Key>
+      <PropertyRef Name="ShiftId" />
+    </Key>
+    <Property Name="ShiftId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShitName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="StartDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StopDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="JobId" Type="Int32" />
+    <Property Name="RequiredVolunteers" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ShiftWorkers" Relationship="DbVMSModel.FK__tblShiftW__Shift__2E1BDC42" FromRole="VolunteerShift" ToRole="ShiftWorkers" />
+    <NavigationProperty Name="VolunteerActivityJob" Relationship="DbVMSModel.FK__tblVolunt__JobId__239E4DCF" FromRole="VolunteerShift" ToRole="VolunteerActivityJob" />
+  </EntityType>
+  <EntityType Name="Worker">
+    <Key>
+      <PropertyRef Name="WorkerId" />
+    </Key>
+    <Property Name="WorkerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="ShiftWorkers" Relationship="DbVMSModel.FK__tblShiftW__Worke__2F10007B" FromRole="Workers" ToRole="ShiftWorkers" />
+    <NavigationProperty Name="Status1" Relationship="DbVMSModel.FK__tblVolunt__Statu__276EDEB3" FromRole="Workers" ToRole="Status" />
+    <NavigationProperty Name="User" Relationship="DbVMSModel.FK__Workers__UserId__5165187F" FromRole="Worker" ToRole="User" />
+  </EntityType>
+  <Association Name="FK__tblShiftW__Shift__2E1BDC42">
+    <End Role="VolunteerShift" Type="DbVMSModel.VolunteerShift" Multiplicity="0..1" />
+    <End Role="ShiftWorkers" Type="DbVMSModel.ShiftWorker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VolunteerShift">
+        <PropertyRef Name="ShiftId" />
+      </Principal>
+      <Dependent Role="ShiftWorkers">
+        <PropertyRef Name="ShiftId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblShiftW__Worke__2F10007B">
+    <End Role="Workers" Type="DbVMSModel.Worker" Multiplicity="0..1" />
+    <End Role="ShiftWorkers" Type="DbVMSModel.ShiftWorker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workers">
+        <PropertyRef Name="WorkerId" />
+      </Principal>
+      <Dependent Role="ShiftWorkers">
+        <PropertyRef Name="WorkerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblVolunt__Statu__182C9B23">
+    <End Role="Status" Type="DbVMSModel.Status" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VolunteerOrganization" Type="DbVMSModel.VolunteerOrganization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VolunteerOrganization">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblVolunt__Statu__276EDEB3">
+    <End Role="Status" Type="DbVMSModel.Status" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Workers" Type="DbVMSModel.Worker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workers">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblVolunt__Activ__1FCDBCEB">
+    <End Role="VolunteerActivity" Type="DbVMSModel.VolunteerActivity" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VolunteerActivityJob" Type="DbVMSModel.VolunteerActivityJob" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VolunteerActivity">
+        <PropertyRef Name="ActivityId" />
+      </Principal>
+      <Dependent Role="VolunteerActivityJob">
+        <PropertyRef Name="ActivityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblVolunt__OrgId__1BFD2C07">
+    <End Role="VolunteerOrganization" Type="DbVMSModel.VolunteerOrganization" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VolunteerActivity" Type="DbVMSModel.VolunteerActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VolunteerOrganization">
+        <PropertyRef Name="OrgId" />
+      </Principal>
+      <Dependent Role="VolunteerActivity">
+        <PropertyRef Name="OrgId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblVolunt__JobId__239E4DCF">
+    <End Role="VolunteerActivityJob" Type="DbVMSModel.VolunteerActivityJob" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VolunteerShift" Type="DbVMSModel.VolunteerShift" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VolunteerActivityJob">
+        <PropertyRef Name="JobId" />
+      </Principal>
+      <Dependent Role="VolunteerShift">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="UserType" />
+    <Property Type="String" Name="EmailId" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Admins" Relationship="DbVMSModel.FK__Admins__UserId__4E88ABD4" FromRole="User" ToRole="Admin" />
+    <NavigationProperty Name="ShiftWorkers" Relationship="DbVMSModel.FK__ShiftWork__UserI__4F7CD00D" FromRole="User" ToRole="ShiftWorker" />
+    <NavigationProperty Name="usertype1" Relationship="DbVMSModel.FK__Users__UserType__4D94879B" FromRole="User" ToRole="usertype" />
+    <NavigationProperty Name="VolunteerOrganizations" Relationship="DbVMSModel.FK__Volunteer__UserI__5070F446" FromRole="User" ToRole="VolunteerOrganization" />
+    <NavigationProperty Name="Workers" Relationship="DbVMSModel.FK__Workers__UserId__5165187F" FromRole="User" ToRole="Worker" />
+    <NavigationProperty Name="UserLogins" Relationship="DbVMSModel.FK__UserLogin__UserI__6D0D32F4" FromRole="User" ToRole="UserLogin" />
+  </EntityType>
+  <Association Name="FK__Admins__UserId__4E88ABD4">
+    <End Type="DbVMSModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="DbVMSModel.Admin" Role="Admin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Admin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ShiftWork__UserI__4F7CD00D">
+    <End Type="DbVMSModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="DbVMSModel.ShiftWorker" Role="ShiftWorker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShiftWorker">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__UserType__4D94879B">
+    <End Type="DbVMSModel.usertype" Role="usertype" Multiplicity="0..1" />
+    <End Type="DbVMSModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertype">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Volunteer__UserI__5070F446">
+    <End Type="DbVMSModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="DbVMSModel.VolunteerOrganization" Role="VolunteerOrganization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VolunteerOrganization">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Workers__UserId__5165187F">
+    <End Type="DbVMSModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="DbVMSModel.Worker" Role="Worker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Worker">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UserLogin">
+    <Key>
+      <PropertyRef Name="AuthToken" />
+    </Key>
+    <Property Type="Guid" Name="AuthToken" Nullable="false" />
+    <Property Type="Int32" Name="UserId" />
+    <Property Type="DateTime" Name="LoginTimeStamp" Precision="3" />
+    <Property Type="DateTime" Name="AuthTokenValidStart" Precision="3" />
+    <Property Type="DateTime" Name="AuthTokenValidEnd" Precision="3" />
+    <Property Type="Boolean" Name="IsLoggedOut" />
+    <Property Type="DateTime" Name="LogOutTimeStamp" Precision="3" />
+    <NavigationProperty Name="User" Relationship="DbVMSModel.FK__UserLogin__UserI__6D0D32F4" FromRole="UserLogin" ToRole="User" />
+  </EntityType>
+  <Association Name="FK__UserLogin__UserI__6D0D32F4">
+    <End Type="DbVMSModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="DbVMSModel.UserLogin" Role="UserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

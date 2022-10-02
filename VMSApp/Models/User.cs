@@ -20,15 +20,19 @@ namespace VMSApp.Models
             this.ShiftWorkers = new HashSet<ShiftWorker>();
             this.VolunteerOrganizations = new HashSet<VolunteerOrganization>();
             this.Workers = new HashSet<Worker>();
+            this.UserLogins = new HashSet<UserLogin>();
         }
     
         public int Id { get; set; }
         public Nullable<int> UserType { get; set; }
+        public string EmailId { get; set; }
+        public string Password { get; set; }
     
         public virtual ICollection<Admin> Admins { get; set; }
         public virtual ICollection<ShiftWorker> ShiftWorkers { get; set; }
         public virtual usertype usertype1 { get; set; }
         public virtual ICollection<VolunteerOrganization> VolunteerOrganizations { get; set; }
         public virtual ICollection<Worker> Workers { get; set; }
+        public virtual ICollection<UserLogin> UserLogins { get; set; }
     }
 }

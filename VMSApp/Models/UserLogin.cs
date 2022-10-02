@@ -12,23 +12,16 @@ namespace VMSApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Worker
+    public partial class UserLogin
     {
-        public Worker()
-        {
-            this.ShiftWorkers = new HashSet<ShiftWorker>();
-        }
-    
-        public int WorkerId { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }
-        public string Address { get; set; }
-        public Nullable<int> Status { get; set; }
+        public System.Guid AuthToken { get; set; }
         public Nullable<int> UserId { get; set; }
+        public Nullable<System.DateTime> LoginTimeStamp { get; set; }
+        public Nullable<System.DateTime> AuthTokenValidStart { get; set; }
+        public Nullable<System.DateTime> AuthTokenValidEnd { get; set; }
+        public Nullable<bool> IsLoggedOut { get; set; }
+        public Nullable<System.DateTime> LogOutTimeStamp { get; set; }
     
-        public virtual ICollection<ShiftWorker> ShiftWorkers { get; set; }
-        public virtual Status Status1 { get; set; }
         public virtual User User { get; set; }
     }
 }

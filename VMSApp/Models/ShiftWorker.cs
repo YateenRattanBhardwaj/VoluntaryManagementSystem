@@ -21,8 +21,8 @@ namespace VMSApp.Models
         public Nullable<bool> IsWorkerApproved { get; set; }
         public Nullable<int> UserId { get; set; }
     
-        public virtual User User { get; set; }
         public virtual VolunteerShift VolunteerShift { get; set; }
         public virtual Worker Worker { get; set; }
+        public virtual User User { get; set; }
     }
 }

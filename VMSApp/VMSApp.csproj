@@ -44,6 +44,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -171,7 +173,63 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Admin.cs">
+      <DependentUpon>VMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShiftWorker.cs">
+      <DependentUpon>VMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>VMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>VMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Status.cs">
+      <DependentUpon>VMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>VMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>VMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserLogin.cs">
+      <DependentUpon>VMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usertype.cs">
+      <DependentUpon>VMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VMSModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VMSModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VMSModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VMSModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VMSModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VolunteerActivity.cs">
+      <DependentUpon>VMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VolunteerActivityJob.cs">
+      <DependentUpon>VMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VolunteerOrganization.cs">
+      <DependentUpon>VMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VolunteerShift.cs">
+      <DependentUpon>VMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Worker.cs">
+      <DependentUpon>VMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +289,23 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <EntityDeploy Include="Models\VMSModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>VMSModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\VMSModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VMSModel.edmx</DependentUpon>
+      <LastGenOutput>VMSModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\VMSModel.edmx.diagram">
+      <DependentUpon>VMSModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\VMSModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VMSModel.edmx</DependentUpon>
+      <LastGenOutput>VMSModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -291,6 +366,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

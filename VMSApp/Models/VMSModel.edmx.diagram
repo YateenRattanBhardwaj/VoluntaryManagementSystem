@@ -4,30 +4,32 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6451174defdc40548ba8471706b4ebdf" Name="Diagram1">
+      <Diagram DiagramId="6451174defdc40548ba8471706b4ebdf" Name="Diagram1" ZoomLevel="114">
         <EntityTypeShape EntityType="DbVMSModel.Admin" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DbVMSModel.ShiftWorker" Width="1.5" PointX="8.25" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DbVMSModel.Status" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbVMSModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbVMSModel.User" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbVMSModel.sysdiagram" Width="1.5" PointX="1" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DbVMSModel.usertype" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="DbVMSModel.VolunteerActivity" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DbVMSModel.VolunteerActivityJob" Width="1.5" PointX="9.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbVMSModel.VolunteerOrganization" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbVMSModel.VolunteerOrganization" Width="1.5" PointX="5.375" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DbVMSModel.VolunteerShift" Width="1.5" PointX="12" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbVMSModel.Worker" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
-        <AssociationConnector Association="DbVMSModel.FK__Admins__UserId__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="DbVMSModel.FK__ShiftWork__UserI__4F7CD00D" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DbVMSModel.Worker" Width="1.5" PointX="6.875" PointY="11.25" IsExpanded="true" />
         <AssociationConnector Association="DbVMSModel.FK__tblShiftW__Shift__2E1BDC42" ManuallyRouted="false" />
         <AssociationConnector Association="DbVMSModel.FK__tblShiftW__Worke__2F10007B" ManuallyRouted="false" />
         <AssociationConnector Association="DbVMSModel.FK__tblVolunt__Statu__182C9B23" ManuallyRouted="false" />
         <AssociationConnector Association="DbVMSModel.FK__tblVolunt__Statu__276EDEB3" ManuallyRouted="false" />
-        <AssociationConnector Association="DbVMSModel.FK__Users__UserType__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="DbVMSModel.FK__Volunteer__UserI__5070F446" ManuallyRouted="false" />
-        <AssociationConnector Association="DbVMSModel.FK__Workers__UserId__5165187F" ManuallyRouted="false" />
         <AssociationConnector Association="DbVMSModel.FK__tblVolunt__Activ__1FCDBCEB" ManuallyRouted="false" />
         <AssociationConnector Association="DbVMSModel.FK__tblVolunt__OrgId__1BFD2C07" ManuallyRouted="false" />
         <AssociationConnector Association="DbVMSModel.FK__tblVolunt__JobId__239E4DCF" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DbVMSModel.User" Width="1.5" PointX="5.6568216689195587" PointY="20.687302613950941" />
+        <AssociationConnector Association="DbVMSModel.FK__Admins__UserId__4E88ABD4" />
+        <AssociationConnector Association="DbVMSModel.FK__ShiftWork__UserI__4F7CD00D" />
+        <AssociationConnector Association="DbVMSModel.FK__Users__UserType__4D94879B" />
+        <AssociationConnector Association="DbVMSModel.FK__Volunteer__UserI__5070F446" />
+        <AssociationConnector Association="DbVMSModel.FK__Workers__UserId__5165187F" />
+        <EntityTypeShape EntityType="DbVMSModel.UserLogin" Width="1.5" PointX="11.184549092866735" PointY="14.297341621619342" />
+        <AssociationConnector Association="DbVMSModel.FK__UserLogin__UserI__6D0D32F4" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

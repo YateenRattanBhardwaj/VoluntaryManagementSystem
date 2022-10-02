@@ -25,11 +25,11 @@ namespace VMSApp.Filters
         {
             public SimpleMembershipInitializer()
             {
-                Database.SetInitializer<UsersContext>(null);
+                Database.SetInitializer<DbVMSEntities>(null);
 
                 try
                 {
-                    using (var context = new UsersContext())
+                    using (var context = new DbVMSEntities())
                     {
                         if (!context.Database.Exists())
                         {
@@ -38,7 +38,7 @@ namespace VMSApp.Filters
                         }
                     }
 
-                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "Users", "Id", "EmailId", autoCreateTables: false);
                 }
                 catch (Exception ex)
                 {
