@@ -50,3 +50,12 @@ D:\IGNOU\VMS\VMSApp\VMSApp\bin\DotNetOpenAuth.OpenId.xml
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 D:\IGNOU\VMS\VMSApp\VMSApp\obj\Debug\VMSApp.dll
 D:\IGNOU\VMS\VMSApp\VMSApp\obj\Debug\VMSApp.pdb
+D:\IGNOU\VMS\VMSApp\VMSApp\obj\Debug\VMSApp.csprojResolveAssemblyReference.cache
+D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.dll
+D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.Web.dll
+D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.Web.Mvc.dll
+D:\IGNOU\VMS\VMSApp\VMSApp\bin\WebActivator.dll
+D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.xml
+D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.Web.xml
+D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.Web.Mvc.xml
+D:\IGNOU\VMS\VMSApp\VMSApp\bin\WebActivator.pdb
