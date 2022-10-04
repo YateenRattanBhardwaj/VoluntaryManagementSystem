@@ -1,4 +1,4 @@
-﻿@model VMSApp.ViewModels.RegisterViewModel
+﻿@model VMSApp.ViewModels.OrganizationViewModel
 
 @{
     ViewBag.Title = "Organization SignUp";
@@ -87,6 +87,20 @@
         <div class="editor-field">
             @Html.DropDownListFor(m => m.City, Model.Cities, new { @Id="ddlCities" })
             @Html.ValidationMessageFor(model => model.City)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PinCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PinCode)
+            @Html.ValidationMessageFor(model => model.PinCode)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
         </div>
         <p>
             <input type="submit" value="Create" />

@@ -151,16 +151,45 @@ namespace VMSApp.Controllers
         [HttpGet]
         public ActionResult SignUpOrganization()
         {
+            OrganizationViewModel model = new OrganizationViewModel();
 
-            return View(PrepRegisterationModel());
+            return View(PrepRegisterationModel(model));
         }
 
-       // [Route("SignUp/Organization")]
+        // [Route("SignUp/Organization")]
         [AllowAnonymous]
         [HttpPost]
 
-        public ActionResult SignUpOrganization(RegisterViewModel model)
+        public ActionResult SignUpOrganization(OrganizationViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                using (DbVMSEntities entities = new DbVMSEntities())
+                {
+                    User user = new User();
+                    user.EmailId = model.Email;
+                    user.Password = model.Password;
+                    user.Country = model.Country;
+                    user.State = model.State;
+                    user.City = string.IsNullOrEmpty(model.City) ? "" : model.City;
+                    user.PinCode = model.PinCode;
+
+                    VolunteerOrganization org = new VolunteerOrganization();
+                    org.Description = model.Description;
+                    org.Name = model.Name;
+                    org.Phone = model.Phone;
+                    org.Website = model.Website;
+                    user.VolunteerOrganizations.Add(org);
+                    entities.Users.Add(user);
+                    entities.SaveChanges();
+ 
+                }
+
+            }
+
+            PrepRegisterationModel(model, model.Country, model.State, model.City);
+
+            ModelState.AddModelError("", "Please fill all the fields correctly");
 
             return View(model);
 
@@ -174,7 +203,9 @@ namespace VMSApp.Controllers
         [AllowAnonymous]
         public ActionResult SignUpWorker()
         {
-            return View(PrepRegisterationModel());
+            OrganizationViewModel model = new OrganizationViewModel();
+
+            return View(PrepRegisterationModel(model));
         }
 
         #region Helpers
@@ -190,18 +221,18 @@ namespace VMSApp.Controllers
             }
         }
 
-        private RegisterViewModel PrepRegisterationModel() 
+        private OrganizationViewModel PrepRegisterationModel(OrganizationViewModel model, string country = "", string state = "", string city = "")
         {
-            RegisterViewModel model = new RegisterViewModel();
             string token = CountryStateCityHelper.getAccessToken();
             model.Countries = CountryStateCityHelper.getCountries(token);
-            model.Cities = new List<SelectListItem>();
-            model.States = new List<SelectListItem>();
+            model.States = string.IsNullOrEmpty(country) ? new List<SelectListItem>() : CountryStateCityHelper.getStates(country, token);
+            model.Cities = string.IsNullOrEmpty(state) ? new List<SelectListItem>() : CountryStateCityHelper.getcities(state, token);
+
             return model;
         }
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult GetStates(string country) 
+        public ActionResult GetStates(string country)
         {
             string token = CountryStateCityHelper.getAccessToken();
             var states = CountryStateCityHelper.getStates(country, token);

@@ -23,7 +23,6 @@ namespace VMSApp.Models
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public string Address { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<int> UserId { get; set; }
     

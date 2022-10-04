@@ -108,9 +108,6 @@
     <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="MiddleName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Name="Address" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
-    <Property Name="EmailId" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Name="Password" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="UserId" Type="Int32" />
     <NavigationProperty Name="User" Relationship="DbVMSModel.FK__Admins__UserId__4E88ABD4" FromRole="Admin" ToRole="User" />
   </EntityType>
@@ -192,7 +189,6 @@
     <Property Name="UserId" Type="Int32" />
     <NavigationProperty Name="Status1" Relationship="DbVMSModel.FK__tblVolunt__Statu__182C9B23" FromRole="VolunteerOrganization" ToRole="Status" />
     <NavigationProperty Name="VolunteerActivities" Relationship="DbVMSModel.FK__tblVolunt__OrgId__1BFD2C07" FromRole="VolunteerOrganization" ToRole="VolunteerActivity" />
-    <Property Type="String" Name="Address" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="User" Relationship="DbVMSModel.FK__Volunteer__UserI__5070F446" FromRole="VolunteerOrganization" ToRole="User" />
   </EntityType>
   <EntityType Name="VolunteerShift">
@@ -217,7 +213,6 @@
     <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="MiddleName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Name="Address" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="Status" Type="Int32" />
     <Property Name="UserId" Type="Int32" />
     <NavigationProperty Name="ShiftWorkers" Relationship="DbVMSModel.FK__tblShiftW__Worke__2F10007B" FromRole="Workers" ToRole="ShiftWorkers" />
@@ -332,6 +327,11 @@
     <NavigationProperty Name="VolunteerOrganizations" Relationship="DbVMSModel.FK__Volunteer__UserI__5070F446" FromRole="User" ToRole="VolunteerOrganization" />
     <NavigationProperty Name="Workers" Relationship="DbVMSModel.FK__Workers__UserId__5165187F" FromRole="User" ToRole="Worker" />
     <NavigationProperty Name="UserLogins" Relationship="DbVMSModel.FK__UserLogin__UserI__6D0D32F4" FromRole="User" ToRole="UserLogin" />
+    <Property Type="String" Name="Country" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="State" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="City" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Address" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PinCode" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK__Admins__UserId__4E88ABD4">
     <End Type="DbVMSModel.User" Role="User" Multiplicity="0..1" />

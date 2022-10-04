@@ -26,7 +26,6 @@ namespace VMSApp.Models
         public string Website { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<int> UserId { get; set; }
-        public string Address { get; set; }
     
         public virtual Status Status1 { get; set; }
         public virtual ICollection<VolunteerActivity> VolunteerActivities { get; set; }

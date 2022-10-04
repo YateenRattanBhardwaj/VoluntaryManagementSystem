@@ -8,9 +8,6 @@
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -79,7 +76,6 @@
     <EntitySetMapping Name="VolunteerOrganizations">
       <EntityTypeMapping TypeName="DbVMSModel.VolunteerOrganization">
         <MappingFragment StoreEntitySet="VolunteerOrganization">
-          <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="OrgId" ColumnName="OrgId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Phone" ColumnName="Phone" />
@@ -110,7 +106,6 @@
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
@@ -119,6 +114,11 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="DbVMSModel.User">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="EmailId" ColumnName="EmailId" />
           <ScalarProperty Name="UserType" ColumnName="UserType" />

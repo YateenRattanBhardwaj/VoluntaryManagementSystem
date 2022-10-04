@@ -18,9 +18,6 @@ namespace VMSApp.Models
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public string Address { get; set; }
-        public string EmailId { get; set; }
-        public string Password { get; set; }
         public Nullable<int> UserId { get; set; }
     
         public virtual User User { get; set; }

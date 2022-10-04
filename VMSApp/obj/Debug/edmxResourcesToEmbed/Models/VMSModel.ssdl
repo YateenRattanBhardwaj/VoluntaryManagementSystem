@@ -74,9 +74,6 @@
     <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="MiddleName" Type="varchar" MaxLength="255" />
     <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="255" />
-    <Property Name="Address" Type="varchar" Nullable="false" MaxLength="500" />
-    <Property Name="EmailId" Type="varchar" Nullable="false" MaxLength="255" />
-    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="UserId" Type="int" />
   </EntityType>
   <EntityType Name="ShiftWorkers">
@@ -127,6 +124,11 @@
     <Property Name="UserType" Type="int" />
     <Property Name="EmailId" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="Password" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="Country" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="State" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="City" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="Address" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="PinCode" Type="varchar" Nullable="false" MaxLength="255" />
   </EntityType>
   <EntityType Name="usertype">
     <Key>
@@ -162,7 +164,6 @@
     <Property Name="OrgId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="Phone" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="Address" Type="varchar" Nullable="false" MaxLength="500" />
     <Property Name="Description" Type="varchar" MaxLength="500" />
     <Property Name="Website" Type="varchar" MaxLength="255" />
     <Property Name="Status" Type="int" />
@@ -188,7 +189,6 @@
     <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="MiddleName" Type="varchar" MaxLength="255" />
     <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="255" />
-    <Property Name="Address" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="Status" Type="int" />
     <Property Name="UserId" Type="int" />
   </EntityType>

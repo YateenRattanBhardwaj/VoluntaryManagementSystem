@@ -79,9 +79,6 @@
           <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="MiddleName" Type="varchar" MaxLength="255" />
           <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="Address" Type="varchar" Nullable="false" MaxLength="500" />
-          <Property Name="EmailId" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="UserId" Type="int" />
         </EntityType>
         <EntityType Name="ShiftWorkers">
@@ -132,6 +129,11 @@
           <Property Name="UserType" Type="int" />
           <Property Name="EmailId" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="Password" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Country" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="State" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="City" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Address" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="PinCode" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
         <EntityType Name="usertype">
           <Key>
@@ -167,7 +169,6 @@
           <Property Name="OrgId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="Phone" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="Address" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
           <Property Name="Website" Type="varchar" MaxLength="255" />
           <Property Name="Status" Type="int" />
@@ -193,7 +194,6 @@
           <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="MiddleName" Type="varchar" MaxLength="255" />
           <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="Address" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="Status" Type="int" />
           <Property Name="UserId" Type="int" />
         </EntityType>
@@ -510,9 +510,6 @@
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="MiddleName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="EmailId" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="UserId" Type="Int32" />
           <NavigationProperty Name="User" Relationship="DbVMSModel.FK__Admins__UserId__4E88ABD4" FromRole="Admin" ToRole="User" />
         </EntityType>
@@ -594,7 +591,6 @@
           <Property Name="UserId" Type="Int32" />
           <NavigationProperty Name="Status1" Relationship="DbVMSModel.FK__tblVolunt__Statu__182C9B23" FromRole="VolunteerOrganization" ToRole="Status" />
           <NavigationProperty Name="VolunteerActivities" Relationship="DbVMSModel.FK__tblVolunt__OrgId__1BFD2C07" FromRole="VolunteerOrganization" ToRole="VolunteerActivity" />
-          <Property Type="String" Name="Address" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="User" Relationship="DbVMSModel.FK__Volunteer__UserI__5070F446" FromRole="VolunteerOrganization" ToRole="User" />
         </EntityType>
         <EntityType Name="VolunteerShift">
@@ -619,7 +615,6 @@
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="MiddleName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="Status" Type="Int32" />
           <Property Name="UserId" Type="Int32" />
           <NavigationProperty Name="ShiftWorkers" Relationship="DbVMSModel.FK__tblShiftW__Worke__2F10007B" FromRole="Workers" ToRole="ShiftWorkers" />
@@ -734,6 +729,11 @@
           <NavigationProperty Name="VolunteerOrganizations" Relationship="DbVMSModel.FK__Volunteer__UserI__5070F446" FromRole="User" ToRole="VolunteerOrganization" />
           <NavigationProperty Name="Workers" Relationship="DbVMSModel.FK__Workers__UserId__5165187F" FromRole="User" ToRole="Worker" />
           <NavigationProperty Name="UserLogins" Relationship="DbVMSModel.FK__UserLogin__UserI__6D0D32F4" FromRole="User" ToRole="UserLogin" />
+          <Property Type="String" Name="Country" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="State" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="City" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PinCode" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__Admins__UserId__4E88ABD4">
           <End Type="DbVMSModel.User" Role="User" Multiplicity="0..1" />
@@ -848,9 +848,6 @@
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -919,7 +916,6 @@
           <EntitySetMapping Name="VolunteerOrganizations">
             <EntityTypeMapping TypeName="DbVMSModel.VolunteerOrganization">
               <MappingFragment StoreEntitySet="VolunteerOrganization">
-                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="OrgId" ColumnName="OrgId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
@@ -950,7 +946,6 @@
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
@@ -959,6 +954,11 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="DbVMSModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="EmailId" ColumnName="EmailId" />
                 <ScalarProperty Name="UserType" ColumnName="UserType" />

@@ -1,6 +1,9 @@
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\VMSApp.dll
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\VMSApp.pdb
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\Antlr3.Runtime.dll
+D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.dll
+D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.Web.dll
+D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.Web.Mvc.dll
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\DotNetOpenAuth.AspNet.dll
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\DotNetOpenAuth.Core.dll
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\DotNetOpenAuth.OAuth.Consumer.dll
@@ -23,9 +26,13 @@ D:\IGNOU\VMS\VMSApp\VMSApp\bin\System.Web.Razor.dll
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\System.Web.WebPages.Deployment.dll
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\System.Web.WebPages.dll
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\System.Web.WebPages.Razor.dll
+D:\IGNOU\VMS\VMSApp\VMSApp\bin\WebActivator.dll
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\WebGrease.dll
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\WebMatrix.Data.dll
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\WebMatrix.WebData.dll
+D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.xml
+D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.Web.xml
+D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.Web.Mvc.xml
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\EntityFramework.xml
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\Newtonsoft.Json.xml
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\System.Net.Http.xml
@@ -39,6 +46,7 @@ D:\IGNOU\VMS\VMSApp\VMSApp\bin\System.Web.Razor.xml
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\System.Web.WebPages.xml
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\System.Web.WebPages.Deployment.xml
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\System.Web.WebPages.Razor.xml
+D:\IGNOU\VMS\VMSApp\VMSApp\bin\WebActivator.pdb
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\WebMatrix.Data.xml
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\Microsoft.Web.WebPages.OAuth.xml
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\WebMatrix.WebData.xml
@@ -50,12 +58,3 @@ D:\IGNOU\VMS\VMSApp\VMSApp\bin\DotNetOpenAuth.OpenId.xml
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 D:\IGNOU\VMS\VMSApp\VMSApp\obj\Debug\VMSApp.dll
 D:\IGNOU\VMS\VMSApp\VMSApp\obj\Debug\VMSApp.pdb
-D:\IGNOU\VMS\VMSApp\VMSApp\obj\Debug\VMSApp.csprojResolveAssemblyReference.cache
-D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.dll
-D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.Web.dll
-D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.Web.Mvc.dll
-D:\IGNOU\VMS\VMSApp\VMSApp\bin\WebActivator.dll
-D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.xml
-D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.Web.xml
-D:\IGNOU\VMS\VMSApp\VMSApp\bin\AttributeRouting.Web.Mvc.xml
-D:\IGNOU\VMS\VMSApp\VMSApp\bin\WebActivator.pdb

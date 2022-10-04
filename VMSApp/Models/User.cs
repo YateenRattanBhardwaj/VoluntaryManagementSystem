@@ -27,6 +27,11 @@ namespace VMSApp.Models
         public Nullable<int> UserType { get; set; }
         public string EmailId { get; set; }
         public string Password { get; set; }
+        public string Country { get; set; }
+        public string State { get; set; }
+        public string City { get; set; }
+        public string Address { get; set; }
+        public string PinCode { get; set; }
     
         public virtual ICollection<Admin> Admins { get; set; }
         public virtual ICollection<ShiftWorker> ShiftWorkers { get; set; }
