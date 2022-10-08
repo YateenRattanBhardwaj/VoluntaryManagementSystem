@@ -43,45 +43,17 @@ namespace VMSApp.Controllers
             {
                 using (DbVMSEntities entities = new DbVMSEntities())
                 {
-                    //entities.sp
-                    spValidateUserResult result = entities.spValidateUser(model.EmailId, model.Password).FirstOrDefault();
-                    if (result != null)
-                    {
-                        User user = entities.Users.FirstOrDefault(u => u.Id == result.UserId);
-                        HttpCookie c = new HttpCookie("AuthToken");
-                        c.Value = result.TokenResult.Value.ToString();
-                        c.Expires = DateTime.Now.AddHours(24);
-                        Response.Cookies.Add(c);
-                        if (user.usertype1.Id == int.Parse(ConfigurationManager.AppSettings["Organization"]))
-                        {
-                            returnUrl = "/Organization/Index";
 
-                            FormsAuthentication.SetAuthCookie(user.VolunteerOrganizations.FirstOrDefault().Name, true);
-                        }
-                        else if (user.usertype1.Id == int.Parse(ConfigurationManager.AppSettings["Worker"]))
-                        {
-                            returnUrl = "/Worker/Index";
-                            FormsAuthentication.SetAuthCookie(user.Workers.FirstOrDefault().FirstName, true);
-                        }
-                        else if (user.usertype1.Id == int.Parse(ConfigurationManager.AppSettings["Admin"]))
-                        {
-                            returnUrl = "/Admin/Index";
-                            FormsAuthentication.SetAuthCookie(user.Admins.FirstOrDefault().FirstName, true);
-                        }
+                    return RedirectToLocal(LoginHelper(entities, model.EmailId, model.Password));
 
-
-                        return RedirectToLocal(returnUrl);
-
-                    }
                 }
 
-            }
 
+            }
             // If we got this far, something failed, redisplay form
             ModelState.AddModelError("", "The user name or password provided is incorrect.");
             return View(model);
         }
-
         //
         // POST: /Account/LogOff
 
@@ -149,6 +121,7 @@ namespace VMSApp.Controllers
         [Route("SignUp/Organization")]
         [AllowAnonymous]
         [HttpGet]
+
         public ActionResult SignUpOrganization()
         {
             OrganizationViewModel model = new OrganizationViewModel();
@@ -166,23 +139,31 @@ namespace VMSApp.Controllers
             {
                 using (DbVMSEntities entities = new DbVMSEntities())
                 {
-                    User user = new User();
-                    user.EmailId = model.Email;
-                    user.Password = model.Password;
-                    user.Country = model.Country;
-                    user.State = model.State;
-                    user.City = string.IsNullOrEmpty(model.City) ? "" : model.City;
-                    user.PinCode = model.PinCode;
-
+                    User user=  getUser(model, int.Parse(ConfigurationManager.AppSettings["Organization"]))
+;
                     VolunteerOrganization org = new VolunteerOrganization();
                     org.Description = model.Description;
                     org.Name = model.Name;
                     org.Phone = model.Phone;
                     org.Website = model.Website;
+                    org.Status = 1;
                     user.VolunteerOrganizations.Add(org);
                     entities.Users.Add(user);
-                    entities.SaveChanges();
- 
+                    try
+                    {
+                        int i = entities.SaveChanges();
+                        if (i > 0)
+                        {
+                            return RedirectToLocal(LoginHelper(entities, model.Email, model.Password));
+
+
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+
                 }
 
             }
@@ -201,14 +182,116 @@ namespace VMSApp.Controllers
 
         [Route("SignUp/Worker")]
         [AllowAnonymous]
+        [HttpGet]
+
         public ActionResult SignUpWorker()
         {
-            OrganizationViewModel model = new OrganizationViewModel();
+            WorkerViewModel model = new WorkerViewModel();
 
             return View(PrepRegisterationModel(model));
         }
 
+
+        [AllowAnonymous]
+        [HttpPost]
+
+        public ActionResult SignUpWorker(WorkerViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (DbVMSEntities entities = new DbVMSEntities())
+                {
+                    User user = getUser(model, int.Parse(ConfigurationManager.AppSettings["Worker"]))
+;
+                    Worker worker = new Worker();
+                    worker.FirstName = model.FirstName;
+                    worker.MiddleName = model.MiddleName;
+                    worker.LastName = model.LastName;
+                    user.Workers.Add(worker);
+                    entities.Users.Add(user);
+                    try
+                    {
+                        int i = entities.SaveChanges();
+                        if (i > 0)
+                        {
+                            return RedirectToLocal(LoginHelper(entities, model.Email, model.Password));
+
+
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+
+                }
+
+            }
+
+            PrepRegisterationModel(model, model.Country, model.State, model.City);
+
+            ModelState.AddModelError("", "Please fill all the fields correctly");
+
+            return View(model);
+
+        }
+
         #region Helpers
+
+
+        private User getUser(UserViewModel model, int type) {
+
+            User user = new User();
+            user.EmailId = model.Email;
+            user.Password = model.Password;
+            user.Country = model.Country;
+            user.State = model.State;
+            user.City = string.IsNullOrEmpty(model.City) ? "" : model.City;
+            user.PinCode = model.PinCode;
+            user.Address = model.Address;
+            user.UserType = type;
+
+            return user;    
+        
+        }
+        private string LoginHelper(DbVMSEntities entities, string EmailId, string Password)
+        {
+
+            string returnUrl = "";
+            spValidateUserResult result = entities.spValidateUser(EmailId, Password).FirstOrDefault();
+            if (result != null)
+            {
+                User user = entities.Users.FirstOrDefault(u => u.Id == result.UserId);
+                HttpCookie c = new HttpCookie("AuthToken");
+                c.Value = result.TokenResult.Value.ToString();
+                c.Expires = DateTime.Now.AddHours(24);
+                Response.Cookies.Add(c);
+                if (user.UserType == int.Parse(ConfigurationManager.AppSettings["Organization"]))
+                {
+                    returnUrl = "/Organization/Index";
+
+                    FormsAuthentication.SetAuthCookie(user.VolunteerOrganizations.FirstOrDefault().Name, true);
+                }
+                else if (user.UserType == int.Parse(ConfigurationManager.AppSettings["Worker"]))
+                {
+                    returnUrl = "/Worker/Index";
+                    FormsAuthentication.SetAuthCookie(user.Workers.FirstOrDefault().FirstName, true);
+                }
+                else if (user.UserType == int.Parse(ConfigurationManager.AppSettings["Admin"]))
+                {
+                    returnUrl = "/Admin/Index";
+                    FormsAuthentication.SetAuthCookie(user.Admins.FirstOrDefault().FirstName, true);
+                }
+
+
+                return returnUrl;
+
+            }
+            return returnUrl;
+
+
+        }
+
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
@@ -221,7 +304,7 @@ namespace VMSApp.Controllers
             }
         }
 
-        private OrganizationViewModel PrepRegisterationModel(OrganizationViewModel model, string country = "", string state = "", string city = "")
+        private UserViewModel PrepRegisterationModel(UserViewModel model, string country = "", string state = "", string city = "")
         {
             string token = CountryStateCityHelper.getAccessToken();
             model.Countries = CountryStateCityHelper.getCountries(token);

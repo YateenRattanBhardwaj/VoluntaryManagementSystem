@@ -1,4 +1,4 @@
-﻿@model VMSApp.ViewModels.OrganizationViewModel
+﻿@model VMSApp.ViewModels.WorkerViewModel
 
 
 @{
@@ -13,13 +13,26 @@
     <fieldset>
         <legend>VolunteerOrganization</legend>
         <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
+            @Html.LabelFor(model => model.FirstName)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
         </div>
-
+            <div class="editor-label">
+            @Html.LabelFor(model => model.MiddleName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MiddleName)
+            @Html.ValidationMessageFor(model => model.MiddleName)
+        </div>
+            <div class="editor-label">
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastName)
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Email)
         </div>
@@ -44,47 +57,41 @@
             @Html.ValidationMessageFor(model => model.ConfirmPassword)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Phone)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Phone)
-            @Html.ValidationMessageFor(model => model.Phone)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Description)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Description)
-            @Html.ValidationMessageFor(model => model.Description)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Website)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Website)
-            @Html.ValidationMessageFor(model => model.Website)
-        </div>
-        <div class="editor-label">
+      
+       <div class="editor-label">
             @Html.LabelFor(model => model.Country)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(m=>m.Country,Model.Countries,"--Select Country--")
+            @Html.DropDownListFor(m => m.Country, Model.Countries, "--Select Country--", new { @Id="ddlCountries" })
             @Html.ValidationMessageFor(model => model.Country)
         </div>
-           <div class="editor-label">
+        <div class="editor-label">
             @Html.LabelFor(model => model.State)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(m=>m.State,Model.States)
+            @Html.DropDownListFor(m => m.State, Model.States, new { @Id="ddlStates" })
             @Html.ValidationMessageFor(model => model.State)
         </div>
-         <div class="editor-label">
+        <div class="editor-label">
             @Html.LabelFor(model => model.City)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(m=>m.City,Model.Cities)
+            @Html.DropDownListFor(m => m.City, Model.Cities, new { @Id="ddlCities" })
             @Html.ValidationMessageFor(model => model.City)
+        </div>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.PinCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PinCode)
+            @Html.ValidationMessageFor(model => model.PinCode)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
         </div>
         <p>
             <input type="submit" value="Create" />
@@ -92,6 +99,52 @@
     </fieldset>
 }
 
-<p>
-        @Html.ActionLink("Back", "Register")
-    </p>
+<div>
+    @Html.ActionLink("Back", "Register")
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(document).ready(function () {
+        $('#ddlCountries').change(function () {
+            $.ajax({
+                type: "post",
+                url: "/Account/GetStates",
+                data: { country: $('#ddlCountries').val() },
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    
+                    district = '--Select States--';
+                    for (var i = 0; i < data.length; i++) {
+                        district = district + '<option value="' + data[i].Value + '">' + data[i].Text + '</option>';
+                    }
+                    $('#ddlStates').html(district);
+                }
+            });
+        });
+
+        $('#ddlStates').change(function () {
+            $.ajax({
+                type: "post",
+                url: "/Account/GetCities",
+                data: { state: $('#ddlStates').val() },
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+
+                    district = '--Select Cities--';
+                    for (var i = 0; i < data.length; i++) {
+                        district = district + '<option value=' + data[i].Value + '>' + data[i].Text + '</option>';
+                    }
+                    $('#ddlCities').html(district);
+                }
+            });
+        });
+    });
+
+</script>
+}
+
