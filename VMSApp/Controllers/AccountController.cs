@@ -27,8 +27,44 @@ namespace VMSApp.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            ViewBag.RegisterURL = "Register";
+            ViewBag.Title = "Login";
             ViewBag.ReturnUrl = returnUrl;
             return View();
+        }
+
+
+        
+        [Route("Admin/Login")]
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult AdminLogin(string returnUrl)
+        {
+            ViewBag.Title = "Admin Login";
+            ViewBag.RegisterURL = "SignUpAdmin";
+            return View("Login");
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult AdminLogin(User model, string returnUrl)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                using (DbVMSEntities entities = new DbVMSEntities())
+                {
+
+                    return RedirectToLocal(LoginHelper(entities, model.EmailId, model.Password));
+
+                }
+
+
+            }
+            // If we got this far, something failed, redisplay form
+            ModelState.AddModelError("", "The user name or password provided is incorrect.");
+            return View(model);
         }
 
         //
@@ -74,7 +110,7 @@ namespace VMSApp.Controllers
             }
             FormsAuthentication.SignOut();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login");
         }
 
         [AllowAnonymous]
@@ -186,7 +222,7 @@ namespace VMSApp.Controllers
 
         public ActionResult SignUpWorker()
         {
-            WorkerViewModel model = new WorkerViewModel();
+            AdminNWorkerViewModel model = new AdminNWorkerViewModel();
 
             return View(PrepRegisterationModel(model));
         }
@@ -195,7 +231,7 @@ namespace VMSApp.Controllers
         [AllowAnonymous]
         [HttpPost]
 
-        public ActionResult SignUpWorker(WorkerViewModel model)
+        public ActionResult SignUpWorker(AdminNWorkerViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -208,6 +244,64 @@ namespace VMSApp.Controllers
                     worker.MiddleName = model.MiddleName;
                     worker.LastName = model.LastName;
                     user.Workers.Add(worker);
+                    entities.Users.Add(user);
+                    try
+                    {
+                        int i = entities.SaveChanges();
+                        if (i > 0)
+                        {
+                            return RedirectToLocal(LoginHelper(entities, model.Email, model.Password));
+
+
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+
+                }
+
+            }
+
+            PrepRegisterationModel(model, model.Country, model.State, model.City);
+
+            ModelState.AddModelError("", "Please fill all the fields correctly");
+
+            return View(model);
+
+        }
+
+
+
+        [Route("SignUp/Admin")]
+        [AllowAnonymous]
+        [HttpGet]
+
+        public ActionResult SignUpAdmin()
+        {
+            AdminNWorkerViewModel model = new AdminNWorkerViewModel();
+
+            return View("SignUpWorker", PrepRegisterationModel(model));
+        }
+
+
+        [AllowAnonymous]
+        [HttpPost]
+
+        public ActionResult SignUpAdmin(AdminNWorkerViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (DbVMSEntities entities = new DbVMSEntities())
+                {
+                    User user = getUser(model, int.Parse(ConfigurationManager.AppSettings["Admin"]))
+;
+                    Admin worker = new Admin();
+                    worker.FirstName = model.FirstName;
+                    worker.MiddleName = model.MiddleName;
+                    worker.LastName = model.LastName;
+                    user.Admins.Add(worker);
                     entities.Users.Add(user);
                     try
                     {

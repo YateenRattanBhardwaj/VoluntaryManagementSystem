@@ -6,7 +6,7 @@ using System.Web;
 
 namespace VMSApp.ViewModels
 {
-    public class WorkerViewModel :
+    public class AdminNWorkerViewModel :
 UserViewModel
     {
         [Required]
