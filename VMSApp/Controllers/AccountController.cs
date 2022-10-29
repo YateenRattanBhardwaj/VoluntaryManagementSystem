@@ -243,6 +243,7 @@ namespace VMSApp.Controllers
                     worker.FirstName = model.FirstName;
                     worker.MiddleName = model.MiddleName;
                     worker.LastName = model.LastName;
+                    worker.Status = 1;
                     user.Workers.Add(worker);
                     entities.Users.Add(user);
                     try
@@ -359,7 +360,10 @@ namespace VMSApp.Controllers
                 HttpCookie c = new HttpCookie("AuthToken");
                 c.Value = result.TokenResult.Value.ToString();
                 c.Expires = DateTime.Now.AddHours(24);
+                HttpCookie uc = new HttpCookie("UserId");
+                uc.Value = result.UserId.ToString();
                 Response.Cookies.Add(c);
+                Response.Cookies.Add(uc);
                 if (user.UserType == int.Parse(ConfigurationManager.AppSettings["Organization"]))
                 {
                     returnUrl = "/Organization/Index";

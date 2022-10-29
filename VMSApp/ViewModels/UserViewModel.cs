@@ -36,7 +36,8 @@ namespace VMSApp.ViewModels
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Password does not match")]
         public string ConfirmPassword { get; set; }
-
+        
+        public int Status { get; set; }
 
         public List<SelectListItem> Countries { get; set; }
         public List<SelectListItem> States { get; set; }

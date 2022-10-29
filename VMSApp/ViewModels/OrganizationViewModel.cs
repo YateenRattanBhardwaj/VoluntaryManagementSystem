@@ -16,9 +16,11 @@ UserViewModel
         [Required]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$")]
         public string Phone { get; set; }
-
-
         public string Description { get; set; }
         public string Website { get; set; }
+
+        public List<ActivityViewModel> Activities { get; set; }
+        
+        
     }
 }
