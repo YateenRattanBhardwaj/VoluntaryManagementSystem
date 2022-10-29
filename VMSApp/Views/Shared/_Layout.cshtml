@@ -1,48 +1,78 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-    </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
-        </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
-                </div>
-            </div>
-        </footer>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - @User.Identity.Name</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!--     Fonts and icons     -->
+ @* <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />*@
+    <!-- https://material.io/resources/icons/?style=baseline -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons"
+      rel="stylesheet">
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-    </body>
+<!-- https://material.io/resources/icons/?style=outline -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined"
+      rel="stylesheet">
+
+<!-- https://material.io/resources/icons/?style=round -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons+Round"
+      rel="stylesheet">
+
+<!-- https://material.io/resources/icons/?style=sharp -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons+Sharp"
+      rel="stylesheet">
+
+<!-- https://material.io/resources/icons/?style=twotone -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons+Two+Tone"
+      rel="stylesheet">
+  <!-- Nucleo Icons -->
+  <link href="~/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="~/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="~/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="~/assets/css/material-dashboard.css" rel="stylesheet" />
+</head>
+<body  class="g-sidenav-show bg-gray-200">
+
+        @Html.Partial("_MenuPartial")
+        
+        @RenderSection("featured", required: false)
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+         <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">@ViewBag.Title</li>
+          </ol>
+          <h6 class="font-weight-bolder mb-0">@ViewBag.Title</h6>
+        </nav>
+        @Html.Partial("_LoginPartial")
+      </div>
+    </nav>
+    <!-- End Navbar -->
+        <div class="container-fluid py-4">
+            @RenderBody()
+
+        </div>
+         
+    </main>
+    
+
+    <!--   Core JS Files   -->
+    <script src="~/assets/js/core/popper.min.js"></script>
+    <script src="~/assets/js/core/bootstrap.min.js"></script>
+    
+    <!-- Plugin for the charts, full documentation here: https://www.chartjs.org/ 
+    <script src="~/assets/js/plugins/chartjs.min.js"></script>
+    <script src="~/assets/js/plugins/Chart.extension.js"></script>-->
+    <script src="~/assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="~/assets/js/material-dashboard.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
 </html>

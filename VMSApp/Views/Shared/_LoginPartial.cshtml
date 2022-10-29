@@ -1,12 +1,22 @@
-﻿@if (User.Identity.IsAuthenticated) {
-    <text>
-        Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!
-        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
-            @Html.AntiForgeryToken()
-            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-        }
-    </text>
-} else {
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+            {
+ @Html.AntiForgeryToken()
+
+ <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link text-body font-weight-bold px-0">
+     <i class="fa fa-sign-out me-sm-1" aria-hidden="true"></i>
+     <span class="d-sm-inline d-none">Sign Out</span>
+ </a>
+            }
+        </div>
+
+    </div>
+}
+else
+{
     <ul>
         <li>@Html.ActionLink("Admin Login", "AdminLogin", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>

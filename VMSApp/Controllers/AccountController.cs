@@ -48,7 +48,7 @@ namespace VMSApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult AdminLogin(User model, string returnUrl)
+        public ActionResult AdminLogin(AdminNWorkerViewModel model, string returnUrl)
         {
             
             if (ModelState.IsValid)
@@ -56,7 +56,7 @@ namespace VMSApp.Controllers
                 using (DbVMSEntities entities = new DbVMSEntities())
                 {
 
-                    return RedirectToLocal(LoginHelper(entities, model.EmailId, model.Password));
+                    return RedirectToLocal(LoginHelper(entities, model.Email, model.Password));
 
                 }
 
@@ -73,14 +73,14 @@ namespace VMSApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(User model, string returnUrl)
+        public ActionResult Login(UserViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 using (DbVMSEntities entities = new DbVMSEntities())
                 {
 
-                    return RedirectToLocal(LoginHelper(entities, model.EmailId, model.Password));
+                    return RedirectToLocal(LoginHelper(entities, model.Email, model.Password));
 
                 }
 
@@ -364,10 +364,11 @@ namespace VMSApp.Controllers
                 uc.Value = result.UserId.ToString();
                 Response.Cookies.Add(c);
                 Response.Cookies.Add(uc);
+                ViewBag.UserType = user.UserType;
                 if (user.UserType == int.Parse(ConfigurationManager.AppSettings["Organization"]))
                 {
                     returnUrl = "/Organization/Index";
-
+                    
                     FormsAuthentication.SetAuthCookie(user.VolunteerOrganizations.FirstOrDefault().Name, true);
                 }
                 else if (user.UserType == int.Parse(ConfigurationManager.AppSettings["Worker"]))
