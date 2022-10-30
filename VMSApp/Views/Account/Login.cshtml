@@ -1,4 +1,4 @@
-﻿@model VMSApp.ViewModels.UserViewModel
+﻿@model VMSApp.Models.User
 
 @{
     string regUrl = ViewBag.RegisterURL;
@@ -17,9 +17,9 @@
         <legend>Log in Form</legend>
         <ol>
             <li>
-                @Html.LabelFor(m => m.Email)
-                @Html.TextBoxFor(m => m.Email)
-                @Html.ValidationMessageFor(m => m.Email)
+                @Html.LabelFor(m => m.EmailId)
+                @Html.TextBoxFor(m => m.EmailId)
+                @Html.ValidationMessageFor(m => m.EmailId)
             </li>
             <li>
                 @Html.LabelFor(m => m.Password)
@@ -89,13 +89,13 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
                         <div class="input-group input-group-outline my-3">
-                        @Html.LabelFor(m => m.Email, new { @class = "form-label" })
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control",@required=true })
-                @Html.ValidationMessageFor(m => m.Email)
+                        @Html.LabelFor(m => m.EmailId, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control", @required = true })
+                @Html.ValidationMessageFor(m => m.EmailId)
                             </div>
                      <div class="input-group input-group-outline mb-3">
                           @Html.LabelFor(m => m.Password, new { @class = "form-label" })
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control",@required=true  })
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @required = true })
                 @Html.ValidationMessageFor(m => m.Password)
                       </div>
                       <div class="text-center">
@@ -107,7 +107,7 @@
                  <p class="mt-4 text-sm text-center">
                     Don't have an account?
                       @*@Html.ActionLink("Sign up", regUrl, new { @class = "text-primary text-gradient font-weight-bold" })*@
-                    <a href="@Url.Action(regUrl,"Account")" class="text-primary text-gradient font-weight-bold">Sign up</a>
+                    <a href="@Url.Action(regUrl, "Account")" class="text-primary text-gradient font-weight-bold">Sign up</a>
                   </p>
               </div>
             </div>

@@ -144,6 +144,22 @@
     <Property Name="ActivityId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
     <Property Name="OrgId" Type="int" />
+    <Property Name="Description" Type="varchar" MaxLength="1000" />
+    <Property Name="StartDateTime" Type="datetime" />
+    <Property Name="EndDateTime" Type="datetime" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="Address" Type="varchar" MaxLength="500" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="Pincode" Type="varchar" MaxLength="10" />
+    <Property Name="ContactNo" Type="varchar" MaxLength="20" />
+    <Property Name="ContactPersonName" Type="varchar" MaxLength="255" />
+    <Property Name="ContactPersonAddress" Type="varchar" MaxLength="500" />
+    <Property Name="ContactPersonCountry" Type="varchar" MaxLength="50" />
+    <Property Name="ContactPersonState" Type="varchar" MaxLength="50" />
+    <Property Name="ContactPersonCity" Type="varchar" MaxLength="50" />
+    <Property Name="ContactPersonPinCode" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="VolunteerActivityJob">
     <Key>

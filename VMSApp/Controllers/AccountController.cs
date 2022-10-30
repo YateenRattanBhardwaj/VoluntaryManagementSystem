@@ -73,14 +73,14 @@ namespace VMSApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(UserViewModel model, string returnUrl)
+        public ActionResult Login(User model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 using (DbVMSEntities entities = new DbVMSEntities())
                 {
 
-                    return RedirectToLocal(LoginHelper(entities, model.Email, model.Password));
+                    return RedirectToLocal(LoginHelper(entities, model.EmailId, model.Password));
 
                 }
 

@@ -32,6 +32,9 @@ namespace VMSApp.Controllers
                         {
                             ActivityViewModel avm = new ActivityViewModel();
                             avm.Name = act.Name;
+                            avm.Description = act.Description;
+                            avm.StartDateTime = act.StartDateTime.Value;
+                            avm.EndDateTime = act.EndDateTime.Value;
                             avm.Jobs = new List<JobViewModel>();
                             ovm.Activities.Add(avm);
                         }

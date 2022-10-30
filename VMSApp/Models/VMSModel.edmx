@@ -149,6 +149,22 @@
           <Property Name="ActivityId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="OrgId" Type="int" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
+          <Property Name="StartDateTime" Type="datetime" />
+          <Property Name="EndDateTime" Type="datetime" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="Address" Type="varchar" MaxLength="500" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Pincode" Type="varchar" MaxLength="10" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="20" />
+          <Property Name="ContactPersonName" Type="varchar" MaxLength="255" />
+          <Property Name="ContactPersonAddress" Type="varchar" MaxLength="500" />
+          <Property Name="ContactPersonCountry" Type="varchar" MaxLength="50" />
+          <Property Name="ContactPersonState" Type="varchar" MaxLength="50" />
+          <Property Name="ContactPersonCity" Type="varchar" MaxLength="50" />
+          <Property Name="ContactPersonPinCode" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="VolunteerActivityJob">
           <Key>
@@ -567,6 +583,22 @@
           <Property Name="OrgId" Type="Int32" />
           <NavigationProperty Name="VolunteerActivityJobs" Relationship="DbVMSModel.FK__tblVolunt__Activ__1FCDBCEB" FromRole="VolunteerActivity" ToRole="VolunteerActivityJob" />
           <NavigationProperty Name="VolunteerOrganization" Relationship="DbVMSModel.FK__tblVolunt__OrgId__1BFD2C07" FromRole="VolunteerActivity" ToRole="VolunteerOrganization" />
+          <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="StartDateTime" Precision="3" />
+          <Property Type="DateTime" Name="EndDateTime" Precision="3" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="Address" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Country" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="State" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Pincode" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ContactNo" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ContactPersonName" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ContactPersonAddress" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ContactPersonCountry" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ContactPersonState" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ContactPersonCity" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ContactPersonPinCode" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VolunteerActivityJob">
           <Key>
@@ -898,6 +930,22 @@
           <EntitySetMapping Name="VolunteerActivities">
             <EntityTypeMapping TypeName="DbVMSModel.VolunteerActivity">
               <MappingFragment StoreEntitySet="VolunteerActivity">
+                <ScalarProperty Name="ContactPersonPinCode" ColumnName="ContactPersonPinCode" />
+                <ScalarProperty Name="ContactPersonCity" ColumnName="ContactPersonCity" />
+                <ScalarProperty Name="ContactPersonState" ColumnName="ContactPersonState" />
+                <ScalarProperty Name="ContactPersonCountry" ColumnName="ContactPersonCountry" />
+                <ScalarProperty Name="ContactPersonAddress" ColumnName="ContactPersonAddress" />
+                <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="OrgId" ColumnName="OrgId" />

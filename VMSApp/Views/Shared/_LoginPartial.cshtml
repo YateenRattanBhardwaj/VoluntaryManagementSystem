@@ -1,23 +1,38 @@
-﻿@if (User.Identity.IsAuthenticated)
-{
-    <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+﻿<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+        <ul class="navbar-nav  justify-content-end">
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                    <div class="sidenav-toggler-inner">
+                        <i class="sidenav-toggler-line"></i>
+                        <i class="sidenav-toggler-line"></i>
+                        <i class="sidenav-toggler-line"></i>
+                    </div>
+                </a>
+            </li>
+            @if (User.Identity.IsAuthenticated)
             {
+                <li class="nav-item px-3 d-flex align-items-center">
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                    {
  @Html.AntiForgeryToken()
 
  <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link text-body font-weight-bold px-0">
      <i class="fa fa-sign-out me-sm-1" aria-hidden="true"></i>
      <span class="d-sm-inline d-none">Sign Out</span>
  </a>
+                    }
+                </li>
+      
             }
-        </div>
+            else
+            {
+                <ul>
+                    <li>@Html.ActionLink("Admin Login", "AdminLogin", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                </ul>
+            }
 
+        </ul>
     </div>
-}
-else
-{
-    <ul>
-        <li>@Html.ActionLink("Admin Login", "AdminLogin", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+
+</div>

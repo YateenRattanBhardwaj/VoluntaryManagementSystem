@@ -161,6 +161,22 @@
     <Property Name="OrgId" Type="Int32" />
     <NavigationProperty Name="VolunteerActivityJobs" Relationship="DbVMSModel.FK__tblVolunt__Activ__1FCDBCEB" FromRole="VolunteerActivity" ToRole="VolunteerActivityJob" />
     <NavigationProperty Name="VolunteerOrganization" Relationship="DbVMSModel.FK__tblVolunt__OrgId__1BFD2C07" FromRole="VolunteerActivity" ToRole="VolunteerOrganization" />
+    <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="StartDateTime" Precision="3" />
+    <Property Type="DateTime" Name="EndDateTime" Precision="3" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="String" Name="Address" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Country" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="State" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Pincode" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ContactNo" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ContactPersonName" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ContactPersonAddress" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ContactPersonCountry" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ContactPersonState" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ContactPersonCity" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ContactPersonPinCode" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="VolunteerActivityJob">
     <Key>

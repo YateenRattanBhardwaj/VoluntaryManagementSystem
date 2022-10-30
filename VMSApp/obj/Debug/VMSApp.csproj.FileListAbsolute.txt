@@ -58,4 +58,3 @@ D:\IGNOU\VMS\VMSApp\VMSApp\bin\DotNetOpenAuth.OpenId.xml
 D:\IGNOU\VMS\VMSApp\VMSApp\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 D:\IGNOU\VMS\VMSApp\VMSApp\obj\Debug\VMSApp.dll
 D:\IGNOU\VMS\VMSApp\VMSApp\obj\Debug\VMSApp.pdb
-D:\IGNOU\VMS\VMSApp\VMSApp\obj\Debug\VMSApp.csprojResolveAssemblyReference.cache

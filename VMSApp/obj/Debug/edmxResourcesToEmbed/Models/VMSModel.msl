@@ -54,6 +54,22 @@
     <EntitySetMapping Name="VolunteerActivities">
       <EntityTypeMapping TypeName="DbVMSModel.VolunteerActivity">
         <MappingFragment StoreEntitySet="VolunteerActivity">
+          <ScalarProperty Name="ContactPersonPinCode" ColumnName="ContactPersonPinCode" />
+          <ScalarProperty Name="ContactPersonCity" ColumnName="ContactPersonCity" />
+          <ScalarProperty Name="ContactPersonState" ColumnName="ContactPersonState" />
+          <ScalarProperty Name="ContactPersonCountry" ColumnName="ContactPersonCountry" />
+          <ScalarProperty Name="ContactPersonAddress" ColumnName="ContactPersonAddress" />
+          <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+          <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="OrgId" ColumnName="OrgId" />
