@@ -8,6 +8,7 @@ namespace VMSApp.ViewModels
 {
     public class ShiftViewModel
     {
+        public int Id;
         [Required]
         [Display(Name="Shift Name")]
         public string Name { get; set; }
@@ -29,6 +30,9 @@ namespace VMSApp.ViewModels
         [Display(Name = "Number of Volunteers Required for This Job")]
         public int RequiredVolunteers { get; set; }
 
+
+        public ActivityViewModel Activity { get; set; }
+        public JobViewModel Job { get; set; }
         
     }
 }

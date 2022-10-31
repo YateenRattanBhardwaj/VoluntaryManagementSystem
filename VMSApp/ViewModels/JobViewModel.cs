@@ -9,6 +9,8 @@ namespace VMSApp.ViewModels
 {
     public class JobViewModel
     {
+        public int Id;
+
         [Required]
         [Display(Name="Job Name")]
         public string Name { get; set; }
@@ -27,6 +29,8 @@ namespace VMSApp.ViewModels
         public List<SelectListItem> States { get; set; }
         public List<SelectListItem> Cities { get; set; }
 
-        public List<ShiftViewModel> Shift { get; set; }
+        public List<ShiftViewModel> Shifts { get; set; }
+
+        public ActivityViewModel Activity { get; set; }
     }
 }

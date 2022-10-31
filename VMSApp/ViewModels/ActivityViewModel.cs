@@ -8,6 +8,7 @@ namespace VMSApp.ViewModels
 {
     public class ActivityViewModel
     {
+        public int Id;
         [Required]
         [Display(Name="Activity Name")]
         public string Name { get; set; }

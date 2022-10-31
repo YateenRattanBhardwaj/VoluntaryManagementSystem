@@ -20,7 +20,9 @@ UserViewModel
         public string Website { get; set; }
 
         public List<ActivityViewModel> Activities { get; set; }
-        
-        
+
+        public List<JobViewModel> Jobs { get; set; }
+        public List<ShiftViewModel> Shifts { get; set; }
+       
     }
 }
